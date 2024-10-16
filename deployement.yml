@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlops-task5-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mlops-task5
+  template:
+    metadata:
+      labels:
+        app: mlops-task5
+    spec:
+      containers:
+      - name: mlops-task5
+        image: mlops_task5:1.0
+        ports:
+        - containerPort: 3000
+        resources:                     # Add resource requests and limits
+          requests:
+            memory: "256Mi"            # Minimum memory the container needs
+            cpu: "500m"                # Minimum CPU the container needs
+          limits:
+            memory: "512Mi"            # Maximum memory the container can use
+            cpu: "1"                   # Maximum CPU the container can use
